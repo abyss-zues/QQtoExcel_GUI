@@ -1,15 +1,7 @@
-# QQtoExcel
-
+# QQtoExcel_GUI
+本项目基于[QQtoExcel](https://github.com/aoguai/QQtoExcel)项目制作
 ##  这个项目是什么
-一个让PC QQ 导出TXT聊天记录转Excel表格的工具
-
-A tool for PC QQ to export TXT chat records to excel tables
-
-## 前言
-
-由于QQ未提供聊天记录导出成Excel表格的功能，同时，QQ自带的消息管理功能BUG频出无人修复。
-
-导致无法合理利用个人的聊天记录数据实现一些有意思的功能，特此开发此项目。
+基于QQtoExcel项目，使用PyQt5框架制作
 
 ## 功能
 1. QQ聊天记录备份
@@ -23,33 +15,6 @@ A tool for PC QQ to export TXT chat records to excel tables
 - 最完善的正则表达式匹配功能，避免非法字符等原因导致的导出崩溃或者数据不准确问题
 
 ## 使用
-### 流程
-1. clone本项目到本地
-
-2. 手动从QQ消息管理器中导出需要转换的消息，注意改为UTF-8-BOM
-
-3. 运行 QQtoExcel.py --> 输入聊天记录txt路径 --> 输入导出路径 --> 导出
-
-如果您是windows用户，没有浏览项目代码需求
-
-可以前往[下载页面](https://github.com/aoguai/QQtoExcel/releases)下载可执行文件，直接运行
-
-### 注意事项
-|  规定名称   | 解释  |
-|  ----  | ----  |
-| 消息分组  | 您的QQ好友分组或QQ群聊分组名称 |
-| 消息对象  | 您的QQ好友或QQ群组 |
-
-当前版本下你可以选择导出项有以下：
-|  可选择项   | 解释  |
-|  ----  | ----  |
-| 时间  | 每个消息对象中每条消息的对应时间，格式为：yyyy-mm-dd hh:mm:ss |
-| 昵称  | 每个消息对象中每条消息的对应备注，若无备注着可能为空、QQ号、QQ昵称 |
-| uid  | 每个消息对象中每条消息的联系方式，可能为QQ号或邮箱。该项在好友消息中可能为空 |
-| 内容  | 每个消息对象中每条消息的内容 |
-
-以上 可选项 将作为标题均可自定义
-
 当前版本默认导出文件名为：
 "分组_昵称.xls"
 
@@ -57,30 +22,19 @@ A tool for PC QQ to export TXT chat records to excel tables
 
 例如，如检测到您的分组或者昵称存在非法字符将会把非法字符替换为"()"，避免windows系统下文件名规定导致的保存失败。
 
-## 效果
-![1](https://github.com/aoguai/QQtoExcel/blob/main/images/1.png)
-![2](https://github.com/aoguai/QQtoExcel/blob/main/images/2.png)
-![3](https://github.com/aoguai/QQtoExcel/blob/main/images/3.png)
 
-## 开发规划
-### 规划
-- [x] 支持好友/群聊/全部聊天记录 转换导出
-- [x] 支持可选项 选择导出
-- [ ] 增加 消息分组 可选项，可按分组导出
-- [ ] 支持 多工作表 导出
-- [ ] 支持 自定义导出文件名规则
-- [ ] 支持 聊天记录清洗，去除无效聊天记录
 
 ### 更新日志
 
-- **2022/7/19 QQtoExcelV1.1.0版本更新**
-  - 新增 自定义可选项标题 功能
-  - 新增 操作流程一些细节显示
-  - 优化 匹配正则表达式
-  - 修复 消息对象分割错误BUG
+- **2022/7/30 QQtoExcel_GUI v1.1.1版本更新**
+  - 基于QQtoExcel v1.1.0制作
+- **2022/7/31 QQtoExcel_GUI v1.1.2版本更新**
+  - 添加拖放功能
+  - 完善软件流程
+  - 修复一些已知问题
 
 ### 如何参与贡献
-您可以直接在[issues](https://github.com/aoguai/QQtoExcel/issues)中提出您的问题或贡献您的代码
+您可以直接在[issues](https://github.com/abyss-zues/QQtoExcel_GUI/issues)中提出您的问题或贡献您的代码
 
 ## 免责声明
 此存储库遵循 MIT 开源协议，请务必理解。
