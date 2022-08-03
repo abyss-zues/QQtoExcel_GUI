@@ -182,7 +182,8 @@ class UI(QWidget, Ui_Form):
             self.progressBar.setValue(0)
             self.WorkThread = WorkThread(self.SourceFilePath, self.TargetPath, self.TableName,
                                          (self.isOutTime, self.isOutName, self.isOutVID, self.isOutContent),
-                                         (self.TimeTitle, self.NameTitle, self.VIDTitle, self.ContentTitle))
+                                         (self.TimeTitle, self.NameTitle, self.VIDTitle, self.ContentTitle),
+                                         self.OutTypecomboBox.currentIndex())
             self.WorkThread.ProgressRateSignal.connect(self.change_progress)
             self.WorkThread.start()
         else:
