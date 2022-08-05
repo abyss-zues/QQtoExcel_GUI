@@ -37,6 +37,8 @@
   - 适配QQtoExcel v1.5.0.20220801更新
   - 新增导出模式选项
   - 其他更新请参阅[QQtoExcel](https://github.com/aoguai/QQtoExcel)
+- **2022/8/5 QQtoExcel_GUI v1.5.2版本更新**
+  - 修改文件默认导出格式
 
 ### 如何参与贡献
 您可以直接在[issues](https://github.com/abyss-zues/QQtoExcel_GUI/issues)中提出您的问题或贡献您的代码
