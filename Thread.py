@@ -170,7 +170,7 @@ class WorkThread(QThread):
 
         files_path = []  # 输出目录列表
         for i in range(len(object_file_name_list)):
-            files_path.append(os.path.join(self.out_dir, object_file_name_list[i] + '.xls'))
+            files_path.append(os.path.join(self.out_dir, object_file_name_list[i] + '.xlsx'))
 
         for i in range(len(files_path)):
             time_list = object_list[i][0]
