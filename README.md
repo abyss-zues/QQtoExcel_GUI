@@ -14,6 +14,7 @@
 - 支持按好友或分组导出
 - 支持选择导出内容
 - 最完善地正则表达式匹配功能，避免非法字符等原因导致的导出崩溃或者数据不准确问题
+- 支持将聊天记录导出到单个/多个文件中
 
 ## 使用
 当前版本默认导出文件名为：
@@ -39,6 +40,9 @@
   - 其他更新请参阅[QQtoExcel](https://github.com/aoguai/QQtoExcel)
 - **2022/8/5 QQtoExcel_GUI v1.5.2版本更新**
   - 修改文件默认导出格式
+- **2022/10/7 QQtoExcel_GUI v1.5.3版本更新**
+  - 新增支持多工作表单文件模式
+  - 修改GUI
 
 ### 如何参与贡献
 您可以直接在[issues](https://github.com/abyss-zues/QQtoExcel_GUI/issues)中提出您的问题或贡献您的代码

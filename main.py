@@ -139,6 +139,11 @@ class UI(QWidget, Ui_Form):
             self.VIDTitle = 'QQ（邮箱）'
             self.ContentTitle = '内容'
 
+    @pyqtSlot(bool)
+    def on_isOnefile_clicked(self, flag: bool):
+        self.label_3.setEnabled(not flag)
+        self.TableNameInput.setEnabled(not flag)
+
     def change_progress(self, progress: int):
         # print(progress)
         self.progressBar.setValue(progress)
@@ -174,7 +179,6 @@ class UI(QWidget, Ui_Form):
         else:
             return True
 
-
     @pyqtSlot()
     def on_StartButton_clicked(self):
         self.StartButton.setDisabled(True)
@@ -183,7 +187,7 @@ class UI(QWidget, Ui_Form):
             self.WorkThread = WorkThread(self.SourceFilePath, self.TargetPath, self.TableName,
                                          (self.isOutTime, self.isOutName, self.isOutVID, self.isOutContent),
                                          (self.TimeTitle, self.NameTitle, self.VIDTitle, self.ContentTitle),
-                                         self.OutTypecomboBox.currentIndex())
+                                         self.OutTypecomboBox.currentIndex(), self.isOnefile)
             self.WorkThread.ProgressRateSignal.connect(self.change_progress)
             self.WorkThread.start()
         else:

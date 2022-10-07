@@ -24,7 +24,7 @@ class WorkThread(QThread):
     row_key_list = []  # 表头标题列表，用以确保输出有序
 
     def __init__(self, input_file_path: str, out_dir: str, sheet_name: str, out_param: tuple,
-                 title_param: tuple, out_type: int):
+                 title_param: tuple, out_type: int, one_file: bool):
         """
 
         :param input_file_path: 输入文件地址
@@ -40,6 +40,7 @@ class WorkThread(QThread):
         self.out_param = out_param
         self.title_param = title_param
         self.out_type = out_type
+        self.one_file = one_file
 
         # 写入Excel标题
         # 默认，{"time_list": "时间", "name_list": "昵称", "uid_list": "QQ（邮箱）", "cont_list": "内容"}
@@ -167,21 +168,33 @@ class WorkThread(QThread):
             :return: None
             """
         object_file_name_list, object_list = self.get_QQChat_record()
-
+        object_num = len(object_file_name_list)
         files_path = []  # 输出目录列表
-        for i in range(len(object_file_name_list)):
-            files_path.append(os.path.join(self.out_dir, object_file_name_list[i] + '.xlsx'))
+        if self.one_file:
+            files_path.append(self.out_dir)
+        else:
+            for i in range(object_num):
+                files_path.append(os.path.join(self.out_dir, object_file_name_list[i] + '.xlsx'))
 
-        for i in range(len(files_path)):
+        workbook = None
+        if self.one_file:
+            workbook = openpyxl.Workbook()
+            workbook.remove(workbook.active)
+        for i in range(object_num):
             time_list = object_list[i][0]
             name_list = object_list[i][1]
             uid_list = object_list[i][2]
             cont_list = object_list[i][3]
 
             # 创建workbook和sheet对象
-            workboot = openpyxl.Workbook()
-            worksheet = workboot.active
-            worksheet.title = self.sheet_name  # 设置工作表的名字
+            if not self.one_file:
+                # 多文件模式
+                workbook = openpyxl.Workbook()
+                worksheet = workbook.active
+                worksheet.title = self.sheet_name  # 设置工作表的名字
+            else:
+                # 单文件模式
+                worksheet = workbook.create_sheet(object_file_name_list[i])
 
             # 写入表头
             for j in range(len(self.row_key_list)):
@@ -200,7 +213,11 @@ class WorkThread(QThread):
             if self.out_param[3]:
                 for k in range(len(cont_list)):
                     worksheet.cell(k + 2, self.row_key_list.index("cont_list") + 1, cont_list[k])
-
-            workboot.save(files_path[i])
-            workboot.close()
-            self.ProgressRateSignal.emit(int((i + 1) / len(files_path) * 100))
+            if not self.one_file:
+                workbook.save(files_path[i])
+                workbook.close()
+            else:
+                if i + 1 == object_num:
+                    workbook.save(''.join([files_path[0], "/聊天记录.xlsx"]))
+                    workbook.close()
+            self.ProgressRateSignal.emit(int((i + 1) / object_num * 100))
